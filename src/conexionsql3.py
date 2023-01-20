@@ -1,9 +1,9 @@
 import sqlite3
 
-def conexion():
-    try:
+
+try:
         conexion = sqlite3.connect("src/database/parkDB.db")
         print("db lista")
 
-    except Exception as ex:
+except Exception as ex:
         print(ex)

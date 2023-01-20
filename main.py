@@ -2,7 +2,8 @@ import tkinter
 import tkinter.font as tkFont
 
 #importar el archivo conexionsql3.py
-import conexionsql3
+#from src.conexionsql3 import conexion
+from src.consultas import *
 
 ventana = tkinter.Tk()
 ventana.geometry("300x200") #tamaño ventana
@@ -32,6 +33,7 @@ def tomar_datos():
     variable_user = text1.get()
     variable_pass = text2.get()
     
+    find_user(variable_user,variable_pass)
     #cambiar un texto dentro del programa --> etiqueta["text"] = variable
 
 
