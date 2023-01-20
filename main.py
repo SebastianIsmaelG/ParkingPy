@@ -1,6 +1,9 @@
 import tkinter
 import tkinter.font as tkFont
 
+#importar el archivo conexionsql3.py
+import conexionsql3
+
 ventana = tkinter.Tk()
 ventana.geometry("300x200") #tamaño ventana
 
