@@ -2,6 +2,10 @@ import sqlite3
 import conexionsql3
 
 def find_user(nombre,password):
-    print(nombre,password)
-   # sql = conexionsql3.conexion.sql()
-    #sql.execute("SELECT * FROM usuarios WHERE nombre = ? AND password = ?")
+    #print(nombre,password)
+    #connection = sqlite3.connect("src/database/parkDB.db")
+    
+    result = conexionsql3.connection.execute("SELECT ID, level_config FROM usuarios WHERE nombre = ? AND password = ?", (nombre,password)).fetchall()
+
+
+    print(result)
