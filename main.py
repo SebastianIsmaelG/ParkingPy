@@ -6,7 +6,7 @@ from consultas import *
 ventana = tkinter.Tk()
 ventana.geometry("300x200") #window default size
 ventana.title('ParkingPy')
-ventana.iconbitmap('C:/Users/gutie/OneDrive/Documentos/Github/ParkingPy/src/images/car_10481242.ico')
+ventana.iconbitmap('logo.ico')
 
 #styles
 font_titulo = tkFont.Font(family="Lucida Grande", size=20,)
@@ -38,13 +38,6 @@ def tomar_datos():
 #button
 boton = tkinter.Button(ventana, text ="Ingresar", command=tomar_datos )
 
-####################################################################Frame2##############
-ingreso = tkinter.Tk()
-ingreso.geometry("300x200") #window default size
-ingreso.title('Ingreso')
-ingreso.iconbitmap('C:/Users/gutie/OneDrive/Documentos/Github/ParkingPy/src/images/car_10481242.ico')
-
-#label datos
 
 
 
