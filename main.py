@@ -1,9 +1,11 @@
 import tkinter
+from tkinter.messagebox import *
 import tkinter.font as tkFont
 
 from consultas import *
 
 ventana = tkinter.Tk()
+ventana.eval('tk::PlaceWindow . center')
 ventana.geometry("300x200") #window default size
 ventana.title('ParkingPy')
 ventana.iconbitmap('logo.ico')
@@ -32,9 +34,46 @@ def tomar_datos():
     variable_user = text1.get()
     variable_pass = text2.get()
     
-    find_user(variable_user,variable_pass)
+    data = find_user(variable_user,variable_pass)
     #change the text inside the program --> etiqueta["text"] = variable
+    #Now we have 2 rows 0 = ID and 1 = level config
+    
+    user_ID = data[0]
+    user_lvl_config = data[1]
+    
+    if(user_ID == 0 and user_lvl_config == 0 ):
+        #no user found, info message
+        tkinter.messagebox.showinfo(title="Informacion", message="Comprobar usuario y/o contraseña")
+       
+    elif (user_lvl_config == 1):
+        #admin
+        cerrar_ventana()
+        frame_ingreso(user_ID)
+        
+            
+    else:
+        #normal access, verifiy data scope
+        cerrar_ventana()
+        frame_ingreso(user_ID)
+    
+    
 
+
+
+def frame_ingreso(user_ID):
+        #Frame 2 -- Need to put this into a class or something
+        ingreso = tkinter.Tk()
+        ingreso.eval('tk::PlaceWindow . center')
+        ingreso.geometry("300x200") #window default size
+        ingreso.title('Ingreso')
+        ingreso.iconbitmap('logo.ico')
+        print(user_ID)
+        
+        
+        
+def cerrar_ventana():
+    ventana.destroy()
+    
 #button
 boton = tkinter.Button(ventana, text ="Ingresar", command=tomar_datos )
 
