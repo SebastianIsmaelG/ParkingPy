@@ -10,23 +10,36 @@ ventana.geometry("300x200") #window default size
 ventana.title('ParkingPy')
 ventana.iconbitmap('logo.ico')
 
+
 #styles
 font_titulo = tkFont.Font(family="Lucida Grande", size=20,)
 
+def frame_login():
+    global text1, text2
+    #label sesion
+    etiqueta0 = tkinter.Label(ventana,text="INICIO DE SESIÓN",font=font_titulo)                      
+    #label username
+    etiqueta1 = tkinter.Label(ventana,text="USUARIO",anchor="w") 
+    #txt username
+    text1 = tkinter.Entry(ventana, width=15)
+    text1.focus_set()
+    #label password
+    etiqueta2 = tkinter.Label(ventana,text="CONTRASEÑA",anchor="w") 
+    #txt password
+    text2 = tkinter.Entry(ventana, show="*", width=15) #show * allow to show password type
+    
+    # grid mmethod 
+    # rows and columns as specified --> row down, column right
+    etiqueta0.grid(row=0,column=0, columnspan=2,padx=20, pady=20)
+    etiqueta1.grid(row = 1, column = 0, pady = 2)
+    text1.grid(row = 1, column = 1, pady = 2)
+    etiqueta2.grid(row = 2, column = 0, pady = 2)
+    text2.grid(row = 2, column = 1, pady = 2)
+    boton.grid(row=3,column=0, columnspan=2,padx=20, pady=20)
 
+    
+    
 
-#label sesion
-etiqueta0 = tkinter.Label(ventana,text="INICIO DE SESIÓN",font=font_titulo)
-
-#label username
-etiqueta1 = tkinter.Label(ventana,text="USUARIO",anchor="w") 
-#txt username
-text1 = tkinter.Entry(ventana, width=15)
-
-#label password
-etiqueta2 = tkinter.Label(ventana,text="CONTRASEÑA",anchor="w") 
-#txt password
-text2 = tkinter.Entry(ventana, show="*", width=15) #show * allow to show password type
 
 
 #action button -> triggers tomar_datos function
@@ -47,13 +60,16 @@ def tomar_datos():
        
     elif (user_lvl_config == 1):
         #admin
-        cerrar_ventana()
         frame_ingreso(user_ID)
+        #iniciar instancia de sesion para almacenar la sesion en la db y los datos que ingresa
+        #guardar datos por fecha? luego se comprueba la fecha en la que esta y vuelven los datos desde la 
+        #db correspondiente al usuario que estubo logeado
+        
+        #el registro se lleva puede filtrar por las fechas y los usuarios 
         
             
     else:
         #normal access, verifiy data scope
-        cerrar_ventana()
         frame_ingreso(user_ID)
     
     
@@ -61,16 +77,16 @@ def tomar_datos():
 
 
 def frame_ingreso(user_ID):
-        #Frame 2 -- Need to put this into a class or something
+        cerrar_ventana()
         ingreso = tkinter.Tk()
-        ingreso.eval('tk::PlaceWindow . center')
-        ingreso.geometry("300x200") #window default size
+        ingreso.geometry("1024x768") #window default size   
+        ingreso.resizable(0,0)
         ingreso.title('Ingreso')
         ingreso.iconbitmap('logo.ico')
         print(user_ID)
-        
-        
-        
+       
+
+  
 def cerrar_ventana():
     ventana.destroy()
     
@@ -79,21 +95,5 @@ boton = tkinter.Button(ventana, text ="Ingresar", command=tomar_datos )
 
 
 
-
-
-# grid mmethod 
-# rows and columns as specified --> row down, column right
-etiqueta0.grid(row=0,column=0, columnspan=2,padx=20, pady=20)
-etiqueta1.grid(row = 1, column = 0, pady = 2)
-text1.grid(row = 1, column = 1, pady = 2)
-etiqueta2.grid(row = 2, column = 0, pady = 2)
-text2.grid(row = 2, column = 1, pady = 2)
-boton.grid(row=3,column=0, columnspan=2,padx=20, pady=20)
-
-
-
-
-
-
-
+frame_login()
 ventana.mainloop()
