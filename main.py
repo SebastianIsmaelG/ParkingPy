@@ -1,4 +1,5 @@
 import tkinter
+import datetime
 from tkinter.messagebox import *
 import tkinter.font as tkFont
 
@@ -37,9 +38,6 @@ def frame_login():
     text2.grid(row = 2, column = 1, pady = 2)
     boton.grid(row=3,column=0, columnspan=2,padx=20, pady=20)
 
-    
-    
-
 
 
 #action button -> triggers tomar_datos function
@@ -65,6 +63,7 @@ def tomar_datos():
         #guardar datos por fecha? luego se comprueba la fecha en la que esta y vuelven los datos desde la 
         #db correspondiente al usuario que estubo logeado
         
+        #El programa busca la fecha actual si hay datos con el id que esta ingresando, si no hay debe crear una nueva
         #el registro se lleva puede filtrar por las fechas y los usuarios 
         
             
@@ -74,17 +73,24 @@ def tomar_datos():
     
     
 
-
-
 def frame_ingreso(user_ID):
-        cerrar_ventana()
-        ingreso = tkinter.Tk()
-        ingreso.geometry("1024x768") #window default size   
-        ingreso.resizable(0,0)
-        ingreso.title('Ingreso')
-        ingreso.iconbitmap('logo.ico')
-        print(user_ID)
+    cerrar_ventana()
+    ingreso = tkinter.Tk()
+    ingreso.geometry("1024x768") #window default size   
+    ingreso.resizable(0,0)
+    ingreso.title('Ingreso')
+    ingreso.iconbitmap('logo.ico')
+    #View
+    hora_actual = datetime.datetime.now() 
+    
+    hora = datetime.datetime.strftime(hora_actual,'%d/%m/%Y %H:%M:%S')
+    
+    print(hora)
+    print(user_ID)
+        
        
+
+
 
   
 def cerrar_ventana():
@@ -96,4 +102,5 @@ boton = tkinter.Button(ventana, text ="Ingresar", command=tomar_datos )
 
 
 frame_login()
+
 ventana.mainloop()
