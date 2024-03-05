@@ -66,6 +66,8 @@ def tomar_datos():
         #El programa busca la fecha actual si hay datos con el id que esta ingresando, si no hay debe crear una nueva
         #el registro se lleva puede filtrar por las fechas y los usuarios 
         
+        #tabla: id-fecha
+        
             
     else:
         #normal access, verifiy data scope
@@ -74,26 +76,42 @@ def tomar_datos():
     
 
 def frame_ingreso(user_ID):
-    cerrar_ventana()
+    cerrar_login()
     ingreso = tkinter.Tk()
     ingreso.geometry("1024x768") #window default size   
     ingreso.resizable(0,0)
     ingreso.title('Ingreso')
     ingreso.iconbitmap('logo.ico')
-    #View
-    hora_actual = datetime.datetime.now() 
     
-    hora = datetime.datetime.strftime(hora_actual,'%d/%m/%Y %H:%M:%S')
     
-    print(hora)
-    print(user_ID)
+    def timetask():
+        #View date time and auto update every second
+        hora_actual = datetime.datetime.now() 
+        hora = datetime.datetime.strftime(hora_actual,'%d/%m/%Y %H:%M:%S')
+        etiqueta3 = tkinter.Label(ingreso,text=hora)
+        ingreso.after(1000, timetask)
+        #label time grid
+        etiqueta3.grid(row=0,column=0)
         
-       
+    ingreso.after(1000, timetask)
+    
+    
+    
+    #labels
+    etiqueta4 = tkinter.Label(ingreso,text=user_ID)
+    
+    # grid mmethod 
+    # rows and columns as specified --> row down, column right
+    etiqueta4.grid(row=1,column=0)
+    
+ 
 
+    #print(user_ID)
+     
+    ingreso.mainloop()
 
-
-  
-def cerrar_ventana():
+#######################################################
+def cerrar_login():
     ventana.destroy()
     
 #button
@@ -101,6 +119,6 @@ boton = tkinter.Button(ventana, text ="Ingresar", command=tomar_datos )
 
 
 
-frame_login()
 
+frame_login()
 ventana.mainloop()
